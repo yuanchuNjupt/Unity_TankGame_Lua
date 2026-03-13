@@ -1,0 +1,22 @@
+
+
+UIType =
+{
+    Text = 1,
+    Image = 2,
+    Button = 3,
+    Toggle = 4,
+    Slider = 5,
+    Scrollbar = 6,
+    Dropdown = 7,
+    InputField = 8,
+    ScrollRect = 9,
+}
+
+
+local meta = {
+    __index = UIType,
+    __newindex = function() error("不可修改") end
+}
+
+setmetatable(UIType , meta)

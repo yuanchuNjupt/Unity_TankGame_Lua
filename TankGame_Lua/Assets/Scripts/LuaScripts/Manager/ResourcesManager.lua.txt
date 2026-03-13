@@ -1,0 +1,23 @@
+
+local ResourcesManager = {}
+function ResourcesManager.Load(path , type)
+    local res = Resources.Load(path , typeof(type))
+    if res == nil then
+        print("资源未找到：" .. path)
+    end
+    return res
+end
+
+function ResourcesManager.LoadInstance(path)
+    local res = Resources.Load(path , typeof(GameObject))
+    if res == nil then
+        print("资源未找到：" .. path)
+        return nil
+    end
+    
+    return GameObject.Instantiate(res)
+    
+end
+return ResourcesManager 
+
+

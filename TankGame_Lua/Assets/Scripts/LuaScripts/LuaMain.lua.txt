@@ -1,0 +1,19 @@
+
+print("Lua Main.lua loaded")
+
+require("Base/Object")
+require("Base/SplitTools")
+Json = require("Base/JsonUtility")
+require("Base/UnityAPI")
+
+
+
+--UI相关
+local uiManager = require("Manager/UIManager")
+
+uiManager:ShowPanel("LobbyPanel")
+
+
+
+
+

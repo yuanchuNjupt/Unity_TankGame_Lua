@@ -1,0 +1,51 @@
+
+Object:subClass("BasePanel")
+
+--对应的Unity面板对象
+BasePanel.panelObject = nil
+
+
+function BasePanel:Init(panelObject)
+    self.panelObject = panelObject
+end
+
+--找到某个控件
+function BasePanel:FindComponentByName(componentName , componentType)
+    if self.panelObject == nil then
+        print("panelObject为空，无法找到组件")
+        return nil
+    end
+    
+    local componentTransform = self.panelObject.transform:Find(componentName)
+    if componentTransform == nil then
+        print("节点未找到：" .. componentName)
+        return nil
+    end
+
+    local component = componentTransform:GetComponent(typeof(componentType))
+
+    if component == nil then
+        print(componentName .. "组件未找到,类型：" .. componentType)
+    end
+    
+    return component
+end
+
+function BasePanel:GetComponent(componentName)
+    local component = self.components[componentName]
+    if component == nil then
+        print("组件未找到：" .. componentName)
+        return nil
+    end
+    
+    return component
+end
+
+
+
+
+
+
+
+
+

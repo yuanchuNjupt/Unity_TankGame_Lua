@@ -1,0 +1,28 @@
+
+
+
+GameObject = CS.UnityEngine.GameObject
+Transform = CS.UnityEngine.Transform
+RectTransform = CS.UnityEngine.RectTransform
+Vector3 = CS.UnityEngine.Vector3
+Vector2 = CS.UnityEngine.Vector2
+Resources = CS.UnityEngine.Resources
+SpriteAtlas = CS.UnityEngine.U2D.SpriteAtlas
+
+--UI相关
+Text = CS.UnityEngine.UI.Text
+Image = CS.UnityEngine.UI.Image
+Button = CS.UnityEngine.UI.Button
+Toggle = CS.UnityEngine.UI.Toggle
+Slider = CS.UnityEngine.UI.Slider
+Scrollbar = CS.UnityEngine.UI.Scrollbar
+Dropdown = CS.UnityEngine.UI.Dropdown
+InputField = CS.UnityEngine.UI.InputField
+ScrollRect = CS.UnityEngine.UI.ScrollRect
+UIBehaviour = CS.UnityEngine.EventSystems.UIBehaviour
+
+
+Canvas = CS.UnityEngine.Canvas
+CanvasGroup = CS.UnityEngine.CanvasGroup
+
+TextAsset = CS.UnityEngine.TextAsset

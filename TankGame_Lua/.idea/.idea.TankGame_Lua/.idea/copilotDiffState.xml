@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/Assets/Scripts/LuaScripts/UI/BasePanel.lua.txt">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/Assets/Scripts/LuaScripts/UI/BasePanel.lua.txt" />
+              <option name="originalContent" value="&#10;Object:subClass(&quot;BasePanel&quot;)&#10;&#10;--对应的Unity面板对象&#10;BasePanel.panelObject = nil&#10;&#10;&#10;function BasePanel:Init(panelObject)&#10;    self.panelObject = panelObject&#10;end&#10;&#10;--找到某个控件&#10;function BasePanel:FindComponentByName(componentName , componentType)&#10;    if self.panelObject == nil then&#10;        print(&quot;panelObject为空，无法找到组件&quot;)&#10;        return nil&#10;    end&#10;    &#10;    local componentTransform = self.panelObject.transform:Find(componentName)&#10;    if componentTransform == nil then&#10;        print(&quot;节点未找到：&quot; .. componentName)&#10;        return nil&#10;    end&#10;&#10;    local component = componentTransform:GetComponent(typeof(componentType))&#10;&#10;    if component == nil then&#10;        print(componentName .. &quot;组件未找到,类型：&quot; .. componentType)&#10;    end&#10;    &#10;    return component&#10;end&#10;&#10;function BasePanel:GetComponent(componentName)&#10;    local component = self.components[componentName]&#10;    if component == nil then&#10;        print(&quot;组件未找到：&quot; .. componentName)&#10;        return nil&#10;    end&#10;    &#10;    return component&#10;end&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;" />
+              <option name="updatedContent" value="&#10;Object:subClass(&quot;BasePanel&quot;)&#10;&#10;--对应的Unity面板对象&#10;BasePanel.panelObject = nil&#10;&#10;&#10;function BasePanel:Init(panelObject)&#10;    self.panelObject = panelObject&#10;end&#10;&#10;--找到某个控件&#10;function BasePanel:FindComponentByName(componentName , componentType)&#10;    if self.panelObject == nil then&#10;        print(&quot;panelObject为空，无法找到组件&quot;)&#10;        return nil&#10;    end&#10;    &#10;    local componentTransform = self.panelObject.transform:Find(componentName)&#10;    if componentTransform == nil then&#10;        print(&quot;节点未找到：&quot; .. componentName)&#10;        return nil&#10;    end&#10;&#10;    local component = componentTransform:GetComponent(typeof(componentType))&#10;&#10;    if component == nil then&#10;        print(componentName .. &quot;组件未找到,类型：&quot; .. componentType)&#10;    end&#10;    &#10;    return component&#10;end&#10;&#10;function BasePanel:GetComponent(componentName)&#10;    local component = self.components[componentName]&#10;    if component == nil then&#10;        print(&quot;组件未找到：&quot; .. componentName)&#10;        return nil&#10;    end&#10;    &#10;    return component&#10;end&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
