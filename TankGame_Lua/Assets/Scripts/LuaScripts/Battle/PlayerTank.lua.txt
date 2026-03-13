@@ -1,0 +1,37 @@
+
+Object:subClass("PlayerTank")
+
+PlayerTank.gameObject = nil
+PlayerTank.UpdateKey = nil
+PlayerTank.UserData = nil
+
+
+
+
+function PlayerTank:__init(tankInstance)
+    self.gameObject = tankInstance
+    self.UpdateKey = "PlayerTankUpdate"
+    self.UserData = require("Data/UserData")
+    LuaManager:RegisterUpdateFunc(self.UpdateKey , function()
+        self:Update() 
+    end)
+end
+
+function PlayerTank:Update()
+    --检查键盘输出
+    local y = Input.GetAxis("Vertical")
+    local x = Input.GetAxis("Horizontal")
+    --得到移动方向
+    local moveDirection = Vector3(x, 0, y)
+    print(moveDirection)
+    self.gameObject.transform:Translate(moveDirection * self.UserData:GetSpeed() * Time.deltaTime, Space.World)
+end
+
+function PlayerTank:OnDestroy()
+    LuaManager:UnregisterUpdateFunc(self.UpdateKey)
+    GameObject.Destroy(self.gameObject)
+end
+
+
+
+

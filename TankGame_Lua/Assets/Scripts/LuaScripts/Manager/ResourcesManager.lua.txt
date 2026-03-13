@@ -1,5 +1,9 @@
 
-local ResourcesManager = {}
+
+
+
+Object:subClass("ResourcesManager")
+
 function ResourcesManager.Load(path , type)
     local res = Resources.Load(path , typeof(type))
     if res == nil then
@@ -18,6 +22,8 @@ function ResourcesManager.LoadInstance(path)
     return GameObject.Instantiate(res)
     
 end
-return ResourcesManager 
+
+local instance = ResourcesManager:new()
+return instance
 
 

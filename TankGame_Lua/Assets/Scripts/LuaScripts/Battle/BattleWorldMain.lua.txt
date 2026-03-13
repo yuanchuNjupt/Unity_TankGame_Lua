@@ -1,0 +1,30 @@
+
+
+
+require("Battle/PlayerTank")
+
+
+Object:subClass("BattleWorldMain")
+
+BattleWorldMain.resourcesManager = nil
+BattleWorldMain.Player = nil
+
+function BattleWorldMain:__init()
+    self.resourcesManager = require("Manager/ResourcesManager")
+end
+
+
+
+function BattleWorldMain:Init()
+    --获取角色信息
+    --初始化坦克位置，实例化坦克
+    local PlayerTankInstance = self.resourcesManager.LoadInstance("Player")
+    
+    self.Player = PlayerTank:new(PlayerTankInstance)
+end
+
+
+
+local Instance = BattleWorldMain:new()
+return Instance
+

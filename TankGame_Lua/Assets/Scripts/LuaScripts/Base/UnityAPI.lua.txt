@@ -9,6 +9,15 @@ Vector2 = CS.UnityEngine.Vector2
 Resources = CS.UnityEngine.Resources
 SpriteAtlas = CS.UnityEngine.U2D.SpriteAtlas
 
+
+SceneManager = CS.UnityEngine.SceneManagement.SceneManager
+Input = CS.UnityEngine.Input
+KeyCode = CS.UnityEngine.KeyCode
+Time = CS.UnityEngine.Time
+Space = CS.UnityEngine.Space
+AsyncOperation = CS.UnityEngine.AsyncOperation
+
+
 --UI相关
 Text = CS.UnityEngine.UI.Text
 Image = CS.UnityEngine.UI.Image
@@ -26,3 +35,8 @@ Canvas = CS.UnityEngine.Canvas
 CanvasGroup = CS.UnityEngine.CanvasGroup
 
 TextAsset = CS.UnityEngine.TextAsset
+
+
+--自定义工具
+LuaManager = CS.Csharp.Manager.LuaManager.Instance
+

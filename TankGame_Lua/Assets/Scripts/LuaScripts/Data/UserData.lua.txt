@@ -1,0 +1,57 @@
+
+
+
+SelectedWeaponType =
+{
+    Cannon = 1,
+    Sniper = 2,
+    ShotGun = 3,
+}
+
+
+
+Object:subClass("UserData")
+
+UserData.Coins = nil
+UserData.Level = nil
+UserData.MaxHp = nil
+UserData.Speed = nil
+UserData.WeaponRotateSpeed = nil
+UserData.SelectedWeapon = nil
+
+function UserData:__init()
+    self.Coins = 0
+    self.Level = 1
+    self.SelectedWeapon = SelectedWeaponType.Cannon
+end
+
+function UserData:GetMaxHp()
+    return self.Level * GameDataConfig.EveryLevelUpHpIncrease + GameDataConfig.InitialMaxHp
+end
+
+function UserData:GetSpeed()
+    return self.Level * GameDataConfig.EveryLevelUpSpeedIncrease + GameDataConfig.InitialSpeed
+end
+
+
+
+local userData = UserData:new()
+return userData
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

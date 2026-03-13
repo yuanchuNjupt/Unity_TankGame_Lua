@@ -7,8 +7,14 @@ Json = require("Base/JsonUtility")
 require("Base/UnityAPI")
 
 
+require("Data/GameDataConfig")
 
---UI相关
+
+--所有面板引用
+require("UI/BasePanel")
+require("UI/LobbyPanel")
+
+
 local uiManager = require("Manager/UIManager")
 
 uiManager:ShowPanel("LobbyPanel")

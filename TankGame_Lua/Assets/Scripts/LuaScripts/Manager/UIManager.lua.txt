@@ -1,22 +1,25 @@
 
 
+
+
+
+Object:subClass("UIManager")
+
+--依赖
 local resourcesManager = require("Manager/ResourcesManager")
 
-
---单例 UIManager
-local UIManager = {}
---初始化面板字典
-UIManager.panelDic = {}
-UIManager.canvas = resourcesManager.LoadInstance("UI/UIRoot")
-
---所有面板引用
-require("UI/BasePanel")
-require("UI/LobbyPanel")
+--成员属性
+UIManager.panelDic = nil
+UIManager.canvas = nil;
 
 
-
-
-
+--构造函数
+function UIManager:__init()
+    self.panelDic = {}
+    self.canvas = resourcesManager.LoadInstance("UI/UIRoot")
+    GameObject.DontDestroyOnLoad(self.canvas)
+end
+--成员方法
 function UIManager:ShowPanel(panelName)
     if self.panelDic[panelName] == nil then
         --第一次Show，从Resources加载面板
@@ -41,16 +44,12 @@ function UIManager:HidePanel(panelName)
         return
     end
     
-    self.panelDic[panelName]:SetActive(false)
+    self.panelDic[panelName].panelObject:SetActive(false)
 end
 
-
-
-
-
-
-
-return UIManager
+--全局唯一实例
+local instance = UIManager:new()
+return instance
 
 
 

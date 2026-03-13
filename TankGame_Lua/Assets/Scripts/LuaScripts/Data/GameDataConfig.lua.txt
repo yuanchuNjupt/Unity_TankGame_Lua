@@ -1,0 +1,17 @@
+
+
+GameDataConfig = {
+
+    MaxAttributeLevel = 10,
+    
+    InitialMaxHp = 100,
+    InitialSpeed = 5,
+    
+    
+    
+    
+    EveryLevelUpHpIncrease = 20,
+    EveryLevelUpSpeedIncrease = 2,
+    
+}
+

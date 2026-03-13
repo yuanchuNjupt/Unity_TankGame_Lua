@@ -1,5 +1,7 @@
 ﻿
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using XLua;
 namespace Csharp.Manager
 {
@@ -13,6 +15,8 @@ namespace Csharp.Manager
         
         private LuaEnv _luaEnv = null;
         private string _requireLoadPath = null;
+        private UnityAction _onUpdate = null;
+        private Dictionary<string, UnityAction> _updateCallbacks = new Dictionary<string, UnityAction>();
 
         public void Init(string paths = null)
         {
@@ -37,7 +41,40 @@ namespace Csharp.Manager
         public LuaTable Global => _luaEnv.Global;
         
         
-        
+        /// <summary>
+        /// 注册一个Lua函数对象到Update回调
+        /// </summary>
+        /// <param name="callbackKey">回调的唯一标识，用于后续取消订阅</param>
+        /// <param name="luaFunc">Lua函数</param>
+        public void RegisterUpdateFunc(string callbackKey, UnityAction luaFunc)
+        {
+            // 如果该key已存在，先移除旧的
+            if (_updateCallbacks.ContainsKey(callbackKey))
+            {
+                UnregisterUpdateFunc(callbackKey);
+            }
+            
+            _updateCallbacks[callbackKey] = luaFunc;
+            _onUpdate += luaFunc;
+        }
+
+        /// <summary>
+        /// 取消注册一个Lua函数
+        /// </summary>
+        /// <param name="callbackKey">回调的唯一标识</param>
+        public void UnregisterUpdateFunc(string callbackKey)
+        {
+            if (_updateCallbacks.TryGetValue(callbackKey, out UnityAction luaFunc))
+            {
+                _onUpdate -= luaFunc;
+                _updateCallbacks.Remove(callbackKey);
+            }
+        }
+
+        public void OnUpdate()
+        {
+            _onUpdate?.Invoke();
+        }
 
         public void DoString(string str)
         {

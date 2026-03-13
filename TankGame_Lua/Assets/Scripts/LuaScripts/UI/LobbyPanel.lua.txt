@@ -1,19 +1,42 @@
 
 BasePanel:subClass("LobbyPanel")
 
+LobbyPanel.uiManager = nil
+LobbyPanel.entryBattleButton = nil
+LobbyPanel.txt_Coins = nil
+
+
+LobbyPanel.BattleManager = nil
+
+
+
 function LobbyPanel:__init(panelObject)
     -- 调用父类的Init方法
     self:Init(panelObject)
-    
-    -- 查找EntryBattle按钮
-    local EntryBattleButton = self:FindComponentByName("EntryBattle", Button)
-    
-    if EntryBattleButton ~= nil then
-        EntryBattleButton.onClick:AddListener(function()
-            print("点击了进入战斗按钮")
-        end)
-    end
+    self.uiManager = require("Manager/UIManager")
+    self:BindAllComponent()
+    self.BattleManager = require("Battle/BattleWorldMain")
+    self.entryBattleButton.onClick:AddListener(function() self:OnEntryBattleButtonClick()  end)
 end
+
+function LobbyPanel:BindAllComponent()
+    self.entryBattleButton = self:FindComponentByName("EntryBattle", Button)
+    self.txt_Coins = self:FindComponentByName("txt_Coins" , Text)
+end
+
+
+function LobbyPanel:OnEntryBattleButtonClick()
+    print("点击了进入战斗按钮")
+    
+    --self.sceneManager:LoadSceneAsync("BattleScene" , function()
+    --    self.uiManager:HidePanel("LobbyPanel")
+    --    self.BattleManager:Init()
+    --end)
+    
+    
+end
+
+
 
 
 
