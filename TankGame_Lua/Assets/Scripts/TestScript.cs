@@ -13,12 +13,11 @@ public class TestScript : MonoBehaviour
         // Input.GetKeyDown(KeyCode.A)
         // var ao = SceneManager.LoadSceneAsync();
         // ao.completed
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Camera.main.gameObject.transform.SetParent(null);
     }
 }

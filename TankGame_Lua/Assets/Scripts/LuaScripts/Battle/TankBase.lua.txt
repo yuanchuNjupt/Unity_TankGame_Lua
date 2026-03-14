@@ -1,0 +1,52 @@
+
+
+Object:subClass("TankBase")
+
+
+TankBase.hp = nil
+TankBase.tankObject = nil
+TankBase.deathEffect = nil
+TankBase.deathEffectAliveTime = nil
+TankBase.resourcesManager = nil
+
+
+
+function TankBase:__init(TankInstance)
+    self.tankObject = TankInstance
+    self.resourcesManager = require("Manager/ResourcesManager")
+    self.deathEffect = self.resourcesManager.Load("Tank/ExplosionEffect" , GameObject)
+    self.deathEffectAliveTime = 5
+end
+
+
+function TankBase:Fire()
+    
+end
+
+function TankBase:OnHit()
+    
+end
+
+function TankBase:OnDeath()
+    local effectInstance = GameObject.Instantiate(self.deathEffect , self.tankObject.transform.position , Quaternion.identity)
+    GameObject.Destroy(effectInstance , self.deathEffectAliveTime)
+    GameObject.Destroy(self.tankObject)
+    
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

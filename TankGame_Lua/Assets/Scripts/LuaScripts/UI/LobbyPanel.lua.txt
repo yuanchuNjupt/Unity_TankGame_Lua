@@ -28,11 +28,10 @@ end
 function LobbyPanel:OnEntryBattleButtonClick()
     print("点击了进入战斗按钮")
     
-    --self.sceneManager:LoadSceneAsync("BattleScene" , function()
-    --    self.uiManager:HidePanel("LobbyPanel")
-    --    self.BattleManager:Init()
-    --end)
-    
+    LoadSceneManager:LoadSceneAsync("BattleScene" , function()
+        self.uiManager:HidePanel("LobbyPanel")
+        self.BattleManager:Init()
+    end)
     
 end
 

@@ -25,7 +25,7 @@ function UIManager:ShowPanel(panelName)
         --第一次Show，从Resources加载面板
         local panelPrefab = resourcesManager.LoadInstance("UI/" .. panelName)
         if panelPrefab ~= nil then
-            panelPrefab.transform:SetParent(self.canvas.transform, false)
+            panelPrefab.transform:SetParent(self.canvas.transform, false) 
             -- 使用:new()实例化面板类，这样才会调用__init方法
             local panelInstance = _G[panelName]:new(panelPrefab)
             self.panelDic[panelName] = panelInstance

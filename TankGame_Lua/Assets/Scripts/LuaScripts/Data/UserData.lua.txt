@@ -15,8 +15,6 @@ Object:subClass("UserData")
 UserData.Coins = nil
 UserData.Level = nil
 UserData.MaxHp = nil
-UserData.Speed = nil
-UserData.WeaponRotateSpeed = nil
 UserData.SelectedWeapon = nil
 
 function UserData:__init()
@@ -29,8 +27,16 @@ function UserData:GetMaxHp()
     return self.Level * GameDataConfig.EveryLevelUpHpIncrease + GameDataConfig.InitialMaxHp
 end
 
-function UserData:GetSpeed()
+function UserData:GetMoveSpeed()
     return self.Level * GameDataConfig.EveryLevelUpSpeedIncrease + GameDataConfig.InitialSpeed
+end
+
+function UserData:GetRotationSpeed()
+    return self.Level * GameDataConfig.EveryLevelUpRotationIncrease + GameDataConfig.InitialRotationSpeed
+end
+
+function UserData:GetWeaponRotationSpeed()
+    return self.Level * GameDataConfig.EveryLevelUpWeaponRotationIncrease + GameDataConfig.InitialWeaponRotationSpeed
 end
 
 

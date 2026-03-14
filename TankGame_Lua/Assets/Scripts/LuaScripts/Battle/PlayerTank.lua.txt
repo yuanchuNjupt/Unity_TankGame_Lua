@@ -1,35 +1,101 @@
 
-Object:subClass("PlayerTank")
+TankBase:subClass("PlayerTank")
 
-PlayerTank.gameObject = nil
-PlayerTank.UpdateKey = nil
-PlayerTank.UserData = nil
-
-
+PlayerTank.updateKey = nil
+PlayerTank.userData = nil
+PlayerTank.tankRotationSpeed = nil
+PlayerTank.weaponRotationSpeed = nil
+PlayerTank.weapon = nil
+PlayerTank.towerRotationTransform = nil
 
 
 function PlayerTank:__init(tankInstance)
-    self.gameObject = tankInstance
-    self.UpdateKey = "PlayerTankUpdate"
-    self.UserData = require("Data/UserData")
-    LuaManager:RegisterUpdateFunc(self.UpdateKey , function()
+    self.base:__init(tankInstance)
+    self.updateKey = "PlayerTankUpdate"
+    self.userData = require("Data/UserData")
+    self.speed = self.userData:GetMoveSpeed()
+    self.hp = self.userData:GetMaxHp()
+    self.tankRotationSpeed = self.userData:GetRotationSpeed()
+    self.weaponRotationSpeed = self.userData:GetWeaponRotationSpeed()
+    
+    self.towerRotationTransform = tankInstance.transform:Find("TurretObject")
+    
+    self:InitWeaponPosition()
+    
+    LuaManager:RegisterUpdateFunc(self.updateKey , function()
         self:Update() 
     end)
 end
 
 function PlayerTank:Update()
     --检查键盘输出
-    local y = Input.GetAxis("Vertical")
-    local x = Input.GetAxis("Horizontal")
-    --得到移动方向
-    local moveDirection = Vector3(x, 0, y)
-    print(moveDirection)
-    self.gameObject.transform:Translate(moveDirection * self.UserData:GetSpeed() * Time.deltaTime, Space.World)
+    self:UpdateMove()
+    self:UpdateRotation()
+    self:UpdateWeaponRotation()
+    
+    self:CheckFireInput()
+    
+
+    if Input.GetKeyDown(KeyCode.G) then
+        self:OnDeath()
+    end
+    
+    
 end
 
-function PlayerTank:OnDestroy()
-    LuaManager:UnregisterUpdateFunc(self.UpdateKey)
-    GameObject.Destroy(self.gameObject)
+function PlayerTank:UpdateMove()
+    local axis = Input.GetAxis("Vertical")
+    local dir = self.tankObject.transform.forward * axis
+    self.tankObject.transform:Translate(dir * self.speed * Time.deltaTime, Space.World)
+end
+
+function PlayerTank:UpdateRotation()
+    local axis = Input.GetAxis("Horizontal")
+    local rotationAmount = axis * self.tankRotationSpeed * Time.deltaTime
+    self.tankObject.transform:Rotate(0, rotationAmount, 0)
+end
+
+function PlayerTank:UpdateWeaponRotation()
+    local axis = Input.GetAxis("TowerRotation")
+    local rotationAmount = axis * self.weaponRotationSpeed * Time.deltaTime
+    self.towerRotationTransform:Rotate(0, rotationAmount, 0)
+end
+
+function PlayerTank:CheckFireInput()
+    if Input.GetKeyDown(KeyCode.Space) then
+        self.weapon:Fire()
+    end
+end
+
+function PlayerTank:InitWeaponPosition()
+    local trans = self.tankObject.transform:Find("TurretObject/TankTurret_1/WeaponMount")
+    if trans == nil then
+        print("未找到WeaponMount节点")
+    end
+
+    local weaponInstance = nil
+    
+    if self.userData.SelectedWeapon == SelectedWeaponType.Cannon then
+        weaponInstance = self.resourcesManager.LoadInstance("Tank/Cannon")
+        weaponInstance.transform:SetParent(trans , false)
+        self.weapon = CannonWeapon:new(weaponInstance)
+    end
+    
+    
+    
+    
+    
+    
+    
+end
+
+
+
+function PlayerTank:OnDeath()
+
+    Camera.main.gameObject.transform:SetParent(nil)
+    self.base:OnDeath()
+    LuaManager:UnregisterUpdateFunc(self.updateKey)
 end
 
 

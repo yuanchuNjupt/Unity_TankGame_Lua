@@ -5,12 +5,12 @@ using XLua;
 
 namespace CsharpScripts
 {
-    public static class CsharpCallLuaLis
+    public static class CsharpCallLuaList
     {
         [CSharpCallLua] public static List<Type> List = new List<Type>()
         {
             typeof(UnityAction)
-
+            
 
 
         };

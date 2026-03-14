@@ -4,6 +4,7 @@
 GameObject = CS.UnityEngine.GameObject
 Transform = CS.UnityEngine.Transform
 RectTransform = CS.UnityEngine.RectTransform
+Quaternion = CS.UnityEngine.Quaternion
 Vector3 = CS.UnityEngine.Vector3
 Vector2 = CS.UnityEngine.Vector2
 Resources = CS.UnityEngine.Resources
@@ -16,6 +17,8 @@ KeyCode = CS.UnityEngine.KeyCode
 Time = CS.UnityEngine.Time
 Space = CS.UnityEngine.Space
 AsyncOperation = CS.UnityEngine.AsyncOperation
+Camera = CS.UnityEngine.Camera
+
 
 
 --UI相关
@@ -39,4 +42,5 @@ TextAsset = CS.UnityEngine.TextAsset
 
 --自定义工具
 LuaManager = CS.Csharp.Manager.LuaManager.Instance
+LoadSceneManager = CS.Framework.LoadSceneManager.Instance
 

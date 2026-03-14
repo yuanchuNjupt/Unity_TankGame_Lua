@@ -1,0 +1,11 @@
+
+WeaponBase:subClass("CannonWeapon")
+
+function CannonWeapon:__init(TankInstance)
+    self.base:__init(TankInstance)
+end
+
+function CannonWeapon:Fire()
+    self.base:Fire()
+end
+

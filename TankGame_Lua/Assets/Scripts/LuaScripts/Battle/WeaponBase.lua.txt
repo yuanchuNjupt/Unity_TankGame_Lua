@@ -1,0 +1,17 @@
+
+
+Object:subClass("WeaponBase")
+
+WeaponBase.weaponObject = nil
+
+function WeaponBase:__init(weaponInstance)
+    self.weaponObject = weaponInstance
+    
+end
+
+function WeaponBase:Fire()
+    print("武器开火")
+end
+
+
+

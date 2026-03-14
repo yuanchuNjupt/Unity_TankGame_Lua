@@ -3,15 +3,22 @@
 GameDataConfig = {
 
     MaxAttributeLevel = 10,
+    MaxWeaponLevel = 5,
     
+    InitialCoins = 1000,
     InitialMaxHp = 100,
     InitialSpeed = 5,
+    InitialRotationSpeed = 90,
+    InitialWeaponRotationSpeed = 90,
+    
     
     
     
     
     EveryLevelUpHpIncrease = 20,
     EveryLevelUpSpeedIncrease = 2,
+    EveryLevelUpRotationIncrease = 5,
+    EveryLevelUpWeaponRotationIncrease = 5,
     
 }
 

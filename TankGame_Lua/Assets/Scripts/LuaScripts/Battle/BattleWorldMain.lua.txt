@@ -1,6 +1,13 @@
 
 
 
+require("Battle/WeaponBase")
+require("Battle/CannonWeapon")
+
+
+
+
+require("Battle/TankBase")
 require("Battle/PlayerTank")
 
 
@@ -18,8 +25,10 @@ end
 function BattleWorldMain:Init()
     --获取角色信息
     --初始化坦克位置，实例化坦克
-    local PlayerTankInstance = self.resourcesManager.LoadInstance("Player")
-    
+    local PlayerTankInstance = self.resourcesManager.LoadInstance("Tank/PlayerTank")
+    local spawnPoint = GameObject.Find("SpawnPoint")
+    PlayerTankInstance.transform.position = spawnPoint.transform.position
+    PlayerTankInstance.transform.rotation = spawnPoint.transform.rotation
     self.Player = PlayerTank:new(PlayerTankInstance)
 end
 
