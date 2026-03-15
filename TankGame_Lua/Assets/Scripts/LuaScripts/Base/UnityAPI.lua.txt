@@ -41,6 +41,6 @@ TextAsset = CS.UnityEngine.TextAsset
 
 
 --自定义工具
-LuaManager = CS.Csharp.Manager.LuaManager.Instance
+LuaManager = CS.Framework.LuaManager.Instance
 LoadSceneManager = CS.Framework.LoadSceneManager.Instance
-
+CSBridge = CS.CsharpScripts.UnityObjectLifeCycleBridge

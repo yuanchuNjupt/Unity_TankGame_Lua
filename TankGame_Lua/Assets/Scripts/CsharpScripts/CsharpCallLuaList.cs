@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 using XLua;
 
@@ -9,8 +10,9 @@ namespace CsharpScripts
     {
         [CSharpCallLua] public static List<Type> List = new List<Type>()
         {
-            typeof(UnityAction)
-            
+            typeof(UnityAction),
+            typeof(Action<Collision>),
+            typeof(Action<Collider>),
 
 
         };

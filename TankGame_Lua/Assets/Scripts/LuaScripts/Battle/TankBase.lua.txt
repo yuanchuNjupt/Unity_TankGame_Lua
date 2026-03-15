@@ -20,7 +20,6 @@ end
 
 
 function TankBase:Fire()
-    
 end
 
 function TankBase:OnHit()

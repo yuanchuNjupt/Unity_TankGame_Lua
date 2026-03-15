@@ -1,5 +1,5 @@
 using System;
-using Csharp.Manager;
+using Framework;
 using UnityEngine;
 using XLua;
 

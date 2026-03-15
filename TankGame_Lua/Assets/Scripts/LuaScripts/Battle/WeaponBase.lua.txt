@@ -3,14 +3,28 @@
 Object:subClass("WeaponBase")
 
 WeaponBase.weaponObject = nil
+WeaponBase.shootPoints = nil
+WeaponBase.playerTank = nil
+WeaponBase.bulletPrefab = nil
+WeaponBase.resourcesManager = nil
 
-function WeaponBase:__init(weaponInstance)
+function WeaponBase:__init(weaponInstance , playerTank)
+    self.playerTank = playerTank
     self.weaponObject = weaponInstance
+    self.shootPoints = {}
+    self.resourcesManager = require("Manager/ResourcesManager")
     
 end
 
 function WeaponBase:Fire()
     print("武器开火")
+    for i, point in pairs(self.shootPoints) do
+        local bulletInstance = self.resourcesManager.LoadInstance("Tank/CommonBullet" , GameObject)
+        
+        bulletInstance.transform.position = point.position
+        bulletInstance.transform.rotation = point.rotation
+        Bullet:new(bulletInstance)
+    end
 end
 
 

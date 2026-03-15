@@ -1,9 +1,9 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using XLua;
-namespace Csharp.Manager
+
+namespace Framework
 {
     public class LuaManager
     {

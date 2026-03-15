@@ -1,8 +1,15 @@
 
 WeaponBase:subClass("CannonWeapon")
 
-function CannonWeapon:__init(TankInstance)
-    self.base:__init(TankInstance)
+function CannonWeapon:__init(TankInstance , playerTank)
+    self.base:__init(TankInstance , playerTank)
+    local pointsTransform = self.weaponObject.transform:Find("Gun_2/ShootPointList").transform
+    local childCount = pointsTransform.childCount
+    for i = 0, childCount - 1 do
+        table.insert(self.shootPoints , pointsTransform:GetChild(i))
+    end
+    self.bulletPrefab = self.resourcesManager.Load("Tank/CommonBullet" , GameObject)
+    
 end
 
 function CannonWeapon:Fire()

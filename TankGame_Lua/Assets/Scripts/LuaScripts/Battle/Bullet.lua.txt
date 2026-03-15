@@ -1,0 +1,63 @@
+
+
+Object:subClass("Bullet")
+
+Bullet.bulletObject = nil
+Bullet.speed = nil
+Bullet.collisionMgr = nil
+Bullet.updateKey = nil
+Bullet.currentAliveTime = nil
+
+
+function Bullet:__init(bulletInstance)
+    self.bulletObject = bulletInstance
+    local bridge = self.bulletObject:AddComponent(typeof(CSBridge))
+    bridge.OnTriggerEnterBridge = function(collider)
+        self:OnTriggerEnter(collider)
+    end
+    self.currentAliveTime = 0
+    
+    self.speed = GameDataConfig.BulletMoveSpeed
+    self.updateKey = "BulletUpdate_" .. tostring(bulletInstance)
+    
+    -- 注册更新函数
+    LuaManager:RegisterUpdateFunc(self.updateKey, function() 
+        self:OnUpdate();
+    end)
+end
+
+function Bullet:OnUpdate()
+    self:UpdatePosition()
+    self.currentAliveTime = self.currentAliveTime + Time.deltaTime
+    if self.currentAliveTime >= GameDataConfig.BulletAliveMaxTime then
+        self:OnDestroy()
+    end
+    
+end
+
+
+function Bullet:UpdatePosition()
+    self.bulletObject.transform:Translate(self.bulletObject.transform.forward * self.speed * Time.deltaTime)
+end
+
+--- 碰撞触发回调
+function Bullet:OnTriggerEnter(collider)
+    print("子弹碰撞到: " .. collider.gameObject.name)
+end
+
+function Bullet:OnDestroy()
+    LuaManager:UnregisterUpdateFunc(self.updateKey)
+    GameObject.Destroy(self.bulletObject)
+end
+
+
+
+
+
+
+
+
+
+
+
+

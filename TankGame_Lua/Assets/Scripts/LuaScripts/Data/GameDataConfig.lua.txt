@@ -20,5 +20,9 @@ GameDataConfig = {
     EveryLevelUpRotationIncrease = 5,
     EveryLevelUpWeaponRotationIncrease = 5,
     
+    
+    
+    BulletMoveSpeed = 10,
+    BulletAliveMaxTime = 5,
 }
 

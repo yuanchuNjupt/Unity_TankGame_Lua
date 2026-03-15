@@ -1,6 +1,6 @@
 
 
-
+require("Battle/Bullet")
 require("Battle/WeaponBase")
 require("Battle/CannonWeapon")
 
