@@ -11,17 +11,17 @@ Bullet.currentAliveTime = nil
 
 function Bullet:__init(bulletInstance)
     self.bulletObject = bulletInstance
-    local bridge = self.bulletObject:AddComponent(typeof(CSBridge))
+    local bridge = self.bulletObject:GetComponent(typeof(CSBridge))
     bridge.OnTriggerEnterBridge = function(collider)
         self:OnTriggerEnter(collider)
     end
     self.currentAliveTime = 0
-    
+
     self.speed = GameDataConfig.BulletMoveSpeed
     self.updateKey = "BulletUpdate_" .. tostring(bulletInstance)
-    
+
     -- 注册更新函数
-    LuaManager:RegisterUpdateFunc(self.updateKey, function() 
+    LuaManager:RegisterUpdateFunc(self.updateKey, function()
         self:OnUpdate();
     end)
 end
@@ -32,12 +32,14 @@ function Bullet:OnUpdate()
     if self.currentAliveTime >= GameDataConfig.BulletAliveMaxTime then
         self:OnDestroy()
     end
-    
+
 end
 
 
 function Bullet:UpdatePosition()
-    self.bulletObject.transform:Translate(self.bulletObject.transform.forward * self.speed * Time.deltaTime)
+    -- 在世界坐标系下，沿着子弹的正前方移动
+    local moveDirection = self.bulletObject.transform.forward * self.speed * Time.deltaTime
+    self.bulletObject.transform.position = self.bulletObject.transform.position + moveDirection
 end
 
 --- 碰撞触发回调
@@ -49,15 +51,3 @@ function Bullet:OnDestroy()
     LuaManager:UnregisterUpdateFunc(self.updateKey)
     GameObject.Destroy(self.bulletObject)
 end
-
-
-
-
-
-
-
-
-
-
-
-
