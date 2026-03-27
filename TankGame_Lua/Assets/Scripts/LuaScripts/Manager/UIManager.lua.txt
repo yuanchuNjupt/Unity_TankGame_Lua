@@ -10,20 +10,26 @@ local resourcesManager = require("Manager/ResourcesManager")
 
 --成员属性
 UIManager.panelDic = nil
-UIManager.canvas = nil;
-
+UIManager.canvas = nil
+UIManager.bundle = nil
 
 --构造函数
 function UIManager:__init()
     self.panelDic = {}
-    self.canvas = resourcesManager.LoadInstance("UI/UIRoot")
+    --self.canvas = resourcesManager.LoadInstance("UI/UIRoot")
+    self.bundle = resourcesManager.LoadAssetBundle(Application.streamingAssetsPath .. "/AssetBundles/ui")
+    local prefab = resourcesManager.LoadAsset(self.bundle , "UIRoot" , typeof(GameObject))
+    self.canvas = GameObject.Instantiate(prefab)
     GameObject.DontDestroyOnLoad(self.canvas)
 end
 --成员方法
 function UIManager:ShowPanel(panelName)
     if self.panelDic[panelName] == nil then
         --第一次Show，从Resources加载面板
-        local panelPrefab = resourcesManager.LoadInstance("UI/" .. panelName)
+        --local panelPrefab = resourcesManager.LoadInstance("UI/" .. panelName)
+        local asset = resourcesManager.LoadAsset(self.bundle , panelName , typeof(GameObject))
+        local panelPrefab = GameObject.Instantiate(asset)
+        
         if panelPrefab ~= nil then
             panelPrefab.transform:SetParent(self.canvas.transform, false) 
             -- 使用:new()实例化面板类，这样才会调用__init方法

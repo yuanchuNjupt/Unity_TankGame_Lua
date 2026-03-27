@@ -18,7 +18,7 @@ end
 
 function WeaponBase:Fire()
     print("武器开火")
-    for i, point in pairs(self.shootPoints) do
+    for _, point in ipairs(self.shootPoints) do
         local bulletInstance = self.resourcesManager.LoadInstance("Tank/CommonBullet" , GameObject)
         
         bulletInstance.transform.position = point.position

@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 1906300991
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: ui
+      Dependencies: {}
+    Info_1:
+      Name: effect
+      Dependencies: {}
+    Info_2:
+      Name: tank
+      Dependencies: {}

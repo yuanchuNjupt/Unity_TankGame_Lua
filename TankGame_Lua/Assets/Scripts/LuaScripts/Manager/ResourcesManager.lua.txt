@@ -4,6 +4,29 @@
 
 Object:subClass("ResourcesManager")
 
+function ResourcesManager.LoadAssetBundle(path)
+    local bundle = AssetBundle.LoadFromFile(path)
+    if bundle == nil then
+        print("AssetBundle未找到：" .. path)
+    else
+        print("成功加载AssetBundle：" .. path)
+    end
+    return bundle
+    
+end
+
+function ResourcesManager.LoadAsset(bundle , assetName , type)
+    local asset = bundle:LoadAsset(assetName , typeof(type))
+    if asset == nil then
+        print("AssetBundle中未找到资源：" .. assetName)
+    else
+        print("成功加载资源：" .. assetName)
+    end
+    return asset;
+end
+
+
+
 function ResourcesManager.Load(path , type)
     local res = Resources.Load(path , typeof(type))
     if res == nil then

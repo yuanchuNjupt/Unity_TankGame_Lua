@@ -12,6 +12,7 @@ SpriteAtlas = CS.UnityEngine.U2D.SpriteAtlas
 
 
 SceneManager = CS.UnityEngine.SceneManagement.SceneManager
+Application = CS.UnityEngine.Application
 Input = CS.UnityEngine.Input
 KeyCode = CS.UnityEngine.KeyCode
 Time = CS.UnityEngine.Time
@@ -32,6 +33,7 @@ Dropdown = CS.UnityEngine.UI.Dropdown
 InputField = CS.UnityEngine.UI.InputField
 ScrollRect = CS.UnityEngine.UI.ScrollRect
 UIBehaviour = CS.UnityEngine.EventSystems.UIBehaviour
+AssetBundle = CS.UnityEngine.AssetBundle
 
 
 Canvas = CS.UnityEngine.Canvas
@@ -44,3 +46,10 @@ TextAsset = CS.UnityEngine.TextAsset
 LuaManager = CS.Framework.LuaManager.Instance
 LoadSceneManager = CS.Framework.LoadSceneManager.Instance
 CSBridge = CS.CsharpScripts.UnityObjectLifeCycleBridge
+
+
+ObjectPool = CS.Framework.ObjectPool.Instance
+PoolEvictionPolicy = CS.Framework.PoolEvictionPolicy
+PoolStatistics = CS.Framework.PoolStatistics
+
+
